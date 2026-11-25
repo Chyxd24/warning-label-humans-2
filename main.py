@@ -1,24 +1,33 @@
-"""Warning Label for Humans: One-Line Big Laugh.
+"""Warning Label for Humans: One-Line Big Laugh — make.fun entry.
 
-Writes one safety warning label for humans (<=160 chars) to /output/entry.txt.
-Joke first, plausible second; the laugh lands on the last words.
+Writes one safety warning label for humans (<=160 chars) to
+/output/entry.txt. Deadpan regulatory register; the laugh lands on the
+last words. Stdlib only, deterministic.
+
+Authored in-session by the WELY-AGENT operator for make.fun.
 """
+
 import os
 
-OUT_DIR = "/output"
-LABEL = ("WARNING: human may attempt to fix sleep schedule at 2 a.m. "
-         "by reading about sleep. Known side effect: becoming an expert "
-         "on sleep while getting none.")
+LABEL = (
+    "WARNING: human fixing their sleep schedule at 2 a.m. by reading "
+    "about sleep. Side effect: expert on sleep, none obtained. "
+    "Do not operate heavy mornings."
+)
+
+OUT_PATH = "/output/entry.txt"
 
 
 def main() -> None:
-    os.makedirs(OUT_DIR, exist_ok=True)
-    assert 1 <= len(LABEL) <= 160, len(LABEL)
-    with open(os.path.join(OUT_DIR, "entry.txt"), "w", encoding="utf-8") as fh:
-        fh.write(LABEL)
-    with open(os.path.join(OUT_DIR, "entry.txt"), encoding="utf-8") as fh:
-        assert fh.read() == LABEL
-    print(f"wrote {len(LABEL)} chars")
+    text = LABEL.strip()
+    assert 1 <= len(text) <= 160, f"label too long: {len(text)}"
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    with open(OUT_PATH, "w", encoding="utf-8") as fh:
+        fh.write(text)
+    with open(OUT_PATH, encoding="utf-8") as fh:
+        landed = fh.read()
+    assert landed == text, f"readback mismatch: {landed!r}"
+    print(f"wrote {len(landed)} chars -> {OUT_PATH}")
 
 
 if __name__ == "__main__":
