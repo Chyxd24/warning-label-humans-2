@@ -10,9 +10,9 @@ Authored in-session by the WELY-AGENT operator for make.fun.
 import os
 
 LABEL = (
-    "WARNING: human fixing their sleep schedule at 2 a.m. by reading "
-    "about sleep. Side effect: expert on sleep, none obtained. "
-    "Do not operate heavy mornings."
+    "WARNING: human attempting to fix their sleep schedule at 2 a.m. by "
+    "reading about sleep. Known side effect: expert on sleep, none "
+    "obtained. Do not operate heavy mornings."
 )
 
 OUT_PATH = "/output/entry.txt"
